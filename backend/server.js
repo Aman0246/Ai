@@ -11,7 +11,7 @@ mongoose.connect(process.env.MONCOCONNECT).then(()=>{console.log("mongoDb Connec
 //=================================
 app.use(cors({
     credentials:true,
-    origin:"http://localhost:3000"  
+    origin:"https://ai-aman0246.vercel.app/"  
   }))
 //=================================
 app.use("/api/v1/auth",routes)

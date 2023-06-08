@@ -9,7 +9,7 @@ import Image from "./Pages/Aiimage"
 import { Routes, Route } from "react-router-dom";
 import Paramaker from './Pages/ParaMaker';
 
-axios.defaults.baseURL="http://127.0.0.1:7000"
+axios.defaults.baseURL="https://ai-dsow.onrender.com"
 axios.defaults.withCredentials=true;
 
 
