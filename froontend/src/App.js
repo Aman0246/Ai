@@ -7,6 +7,7 @@ import Summery from "./Pages/Summery"
 import Register from './Pages/Register';
 import Image from "./Pages/Aiimage"
 import { Routes, Route } from "react-router-dom";
+import Paramaker from './Pages/ParaMaker';
 
 axios.defaults.baseURL="http://127.0.0.1:7000"
 axios.defaults.withCredentials=true;
@@ -22,9 +23,7 @@ function App() {
      <Route path='/summery' element={<Summery></Summery>}></Route>
      <Route path='/register' element={<Register></Register>}></Route>
      <Route path='/image' element={<Image></Image>}></Route>
-
-
-
+     <Route path='/paraMaker' element={<Paramaker></Paramaker>}></Route>
     </Routes>
 
     </>
