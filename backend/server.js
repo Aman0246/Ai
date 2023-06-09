@@ -13,7 +13,7 @@ mongoose.connect(process.env.MONCOCONNECT).then(()=>{console.log("mongoDb Connec
 app.use(a)
 app.use(cors({
   credentials:true,
-origin:"https://ai-18oq237gk-aman0246.vercel.app"}
+origin:"https://ai-five-sigma.vercel.app"}
 ))
 
 //=================================
