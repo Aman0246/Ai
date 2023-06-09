@@ -3,15 +3,17 @@ import { useNavigate } from 'react-router-dom'
 import "./Home.css"
 
 export default function Home() {
+  const loggedIn=JSON.parse(localStorage.getItem("token"))
+
   const navigate=useNavigate()
   const hancleclickOne=()=>{
        navigate("/summery")
   }
+
+
   return (
-
-    <div className='a'>
-
-   
+    <>
+     {loggedIn?(<div className='a'>
     <div class="grid  gap-4 grid-cols-3 grid-rows-2">
     <div className=' hover:border-green-300 hover:bg-gray-900 justify-center flex-col items-center flex border-4 border-green-500 h-[15rem] my-5 mx-5 rounded-3xl bg-black text-white ' >
       <h1 className='p-2 font-bold text-lg underline underline-offset-3 '>Summerizer</h1>
@@ -30,6 +32,8 @@ export default function Home() {
     </div>
     
     
-  </div> </div>
+  </div> </div>):("Please SignUp")}
+    
+  </>
   )
 }
