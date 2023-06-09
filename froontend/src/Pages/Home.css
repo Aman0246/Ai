@@ -4,3 +4,10 @@
     background-position: center;
     background-size: cover;
 }
+.bg{
+    background-image: url("https://wallpaperaccess.com/full/7138048.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 85vh;
+}
