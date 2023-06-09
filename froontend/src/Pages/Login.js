@@ -25,9 +25,8 @@ export default function Login() {
         // const local= localStorage.getItem("token")
         // console.log(local)
         navigate("/")
-        if(a.data.status===true) { toast.success(a.data.message)
-   }
-      }
+        if(a.data.status===true) { toast.success(a.data.message)}}
+        else toast.success("Wrong Password")
      
      
     } catch (error) {
