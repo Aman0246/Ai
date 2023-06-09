@@ -14,8 +14,9 @@ export default function Summery() {
 
 
   const handleSummary=async(e)=>{
-    e.preventDefault();
-    try {
+e.preventDefault();
+try {
+      toast.success("wait for few secound")
      let a= await axios.post("/api/openai/summary",{text})
      setsummery(a.data)
        

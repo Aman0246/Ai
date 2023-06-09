@@ -15,7 +15,7 @@ export default function Image() {
 
   const handleSummary=async(e)=>{
     e.preventDefault();
-    try {
+    try {toast.success("wait for few secound")
      let a= await axios.post("/api/openai/AIimage",{text})
 
      setimage(a.data)
