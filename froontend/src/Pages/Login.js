@@ -20,14 +20,13 @@ export default function Login() {
       if(!validator.isEmail(email)){alert("email is invalid ")}
      let a= await axios.post("/api/v1/auth/login",{email:email,password:Password})
      if(a.data.message==="invalid User") return  toast.error("Not Registerd")
+     if(a.data.message==="password not matched") return  toast.error("Wrong Password")
       if(a.data.token){
         localStorage.setItem("token",true)
         // const local= localStorage.getItem("token")
         // console.log(local)
         navigate("/")
         if(a.data.status===true) { toast.success(a.data.message)}}
-        else toast.success("Wrong Password")
-     
      
     } catch (error) {
       console.log(error.message)
