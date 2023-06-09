@@ -16,8 +16,10 @@ const handleregister=async(e)=>{
   try {
     let data=await axios.post("/api/v1/auth/register",{username:usename,email:email,password:password})
     console.log(data)
-    if(data.status===201)return (toast.success(data.data.message)
-     )
+    if(data.status===201){(toast.success(data.data.message))
+      navigate("/login")
+    
+    }
      alert(data.data.message)
     }catch (error) {
     console.log(error.message)
