@@ -9,10 +9,7 @@ require('dotenv').config()
 const port=process.env.PORT || 8080
 mongoose.connect(process.env.MONCOCONNECT).then(()=>{console.log("mongoDb Connected")}).catch(()=>{console.log("Db Connection Errror")})
 //=================================
-app.use(cors({
-    credentials:true,
-    origin:"https://ai-aman0246.vercel.app/"  
-  }))
+app.use(cors())
 //=================================
 app.use("/api/v1/auth",routes)
 app.use("/api/openai",airouter)
