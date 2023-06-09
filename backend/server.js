@@ -11,7 +11,10 @@ const port=process.env.PORT || 8080
 mongoose.connect(process.env.MONCOCONNECT).then(()=>{console.log("mongoDb Connected")}).catch(()=>{console.log("Db Connection Errror")})
 //=================================
 app.use(a)
-app.use(cors())
+app.use(cors({
+  credentials:true,
+origin:"https://ai-p2xf.vercel.app/"}
+))
 
 //=================================
 app.use("/api/v1/auth",routes)
