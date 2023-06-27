@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import "./css/Login.css"
 import { Link } from 'react-router-dom'
-import TextareaAutosize from 'react-textarea-autosize';
 import axios from 'axios'
 import toast from 'react-hot-toast';
+import Loader from '../components/Loader/Loader';
 
 export default function Summery() {
-  
+  const [load,setload]=useState(false)
   const[text,settext]=useState(" ")
   const[summery,setsummery]=useState("")
 
@@ -15,10 +15,12 @@ export default function Summery() {
 
   const handleSummary=async(e)=>{
 e.preventDefault();
-try {
+try {setload(true)
       toast.success("wait for few secound")
-     let a= await axios.post("/api/openai/summary",{text})
-     setsummery(a.data)
+     await axios.post("/api/openai/summary",{text}).then((a)=>{
+
+      setload(false)
+     setsummery(a.data)  })
        
     } catch (error) {
       console.log(error.message)
@@ -31,6 +33,7 @@ try {
  {summery?("" ):(<div className='p-5 font-bold  '>"AI Summarizer is a revolutionary tool that leverages advanced AI algorithms to analyze and summarize articles and URLs. It quickly extracts key insights, saving you time and effort in digesting lengthy content. Stay informed, make informed decisions, and unlock the power of efficient information extraction with AI Summarizer."</div>)
 
  }
+  {load?<div className='absolute'> <Loader/> </div>:("")}
 
     <div className="flex flex-col mt-[15rem] w-[50%]  items-center login-box">
 

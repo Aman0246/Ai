@@ -1,24 +1,25 @@
 import React, { useState } from 'react'
 import "./css/Login.css"
 import { Link } from 'react-router-dom'
-import TextareaAutosize from 'react-textarea-autosize';
 import axios from 'axios'
 import toast from 'react-hot-toast';
+import Loader from '../components/Loader/Loader';
 
 export default function Image() {
-  
+  const [load,setload]=useState(false)
   const[text,settext]=useState(" ")
   const[image,setimage]=useState("")
-
-
-
-
   const handleSummary=async(e)=>{
+    setload(true)
     e.preventDefault();
     try {toast.success("wait for few secound")
-     let a= await axios.post("/api/openai/AIimage",{text})
+ await axios.post("/api/openai/AIimage",{text}).then((a)=>{
+  setload(false)
 
      setimage(a.data)
+           
+    })
+
        
     } catch (error) {
       console.log(error.message)
@@ -28,10 +29,11 @@ export default function Image() {
 
   return (
  <>
- {image?("" ):(<div className='p-5 font-bold  '>"AI Image Generate: Harness the power of AI to create stunning and realistic images with ease and creativity."</div>)
+ {image?(""):(<div className='p-5 font-bold  '>"AI Image Generate: Harness the power of AI to create stunning and realistic images with ease and creativity."</div>)
 
- }
+}
 
+{load?<div className='absolute'> <Loader/> </div>:("")}
     <div className="flex flex-col mt-[15rem] w-[40%]  items-center login-box">
 
         <div className=' text-green-500 text-2xl pb-5 font-bold' >Ai-Image</div>
@@ -47,7 +49,7 @@ export default function Image() {
     </div>
     <div className="user-box">
         {image?(<><div className='w-full font-bold   text-green-500 pb-3' > image :</div>
-        <img src={image} className='w-full rounded-xl p-5  h-[300px] border-2 bg-black text-[17px] focus:outline-none border-green-500 text-white' ></img></> ):("")}
+        <img src={image} className='w-full rounded-xl p-5  h-[300px] border-2 bg-black text-[17px] focus:outline-none border-green-500 text-white' alt='img' ></img></> ):("")}
  
       
 

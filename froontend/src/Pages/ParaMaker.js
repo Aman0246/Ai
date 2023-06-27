@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import "./css/Login.css"
 import { Link } from 'react-router-dom'
-import TextareaAutosize from 'react-textarea-autosize';
 import axios from 'axios'
 import toast from 'react-hot-toast';
+import Loader from '../components/Loader/Loader';
 
 export default function Paramaker() {
-  
+  const [load,setload]=useState(false)
   const[text,settext]=useState(" ")
   const[para,setpara]=useState("")
 
@@ -15,10 +15,12 @@ export default function Paramaker() {
 
   const handleSummary=async(e)=>{
     e.preventDefault();
-    try {
+    try {setload(true)
         toast.success("wait for few secound")
-     let a= await axios.post("/api/openai/paraMaker",{text})
-     setpara(a.data)
+ await axios.post("/api/openai/paraMaker",{text}).then((a)=>{
+  setload(false)
+
+     setpara(a.data)     })
        
     } catch (error) {
       console.log(error.message)
@@ -31,7 +33,7 @@ export default function Paramaker() {
  {para?("" ):(<div className='p-5 font-bold  '>With the Paragraph Generator app, you can easily craft well-structured paragraphs in seconds. Enjoy a user-friendly interface, customizable templates, and seamless integration with your favorite writing tools. Boost your writing efficiency today!</div>)
 
  }
-
+   {load?<div className='absolute'> <Loader/> </div>:("")}
     <div className="flex flex-col mt-[15rem] w-[50%]  items-center login-box">
 
         <div className=' text-green-500 text-2xl pb-5 font-bold' >Paragraph Generator</div>

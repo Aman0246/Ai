@@ -8,7 +8,8 @@ export default function Home() {
   const loggedIn=JSON.parse(localStorage.getItem("token"))
 
   const navigate=useNavigate()
-  const hancleclickOne=()=>{
+  const hancleclickOne=(e)=>{
+    e.preventDefault()
        navigate("/summery")
   }
 

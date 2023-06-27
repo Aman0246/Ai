@@ -3,9 +3,10 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios"
 import "./Register.css"
 import toast from 'react-hot-toast';
-
+import Loader from "../components/Loader/Loader"
 
 export default function Register() {
+  const [load,setload]=useState(false)
   const[usename,setUsername]=useState("")
   const[email,setEmail]=useState("")
   const[password,setpassword]=useState("")
@@ -13,13 +14,17 @@ export default function Register() {
   const navigate=useNavigate()
 const handleregister=async(e)=>{
   e.preventDefault();   
-  try {
-    let data=await axios.post("/api/v1/auth/register",{username:usename,email:email,password:password})
+  try {setload(true)
+  await axios.post("/api/v1/auth/register",{username:usename,email:email,password:password}).then((data)=>{
+      setload(false)
     console.log(data)
     if(data.status===201){(toast.success(data.data.message))
       navigate("/login") }
-     alert(data.data.message)
-    }catch (error) {
+     alert(data.data.message)   
+    })
+    }
+    
+    catch (error) {
     console.log(error.message)
    }
     
@@ -27,7 +32,7 @@ const handleregister=async(e)=>{
 
   return (
     <div className=" mt-6 flex flex-col justify-center items-center login-box ">
- 
+                    {load?<div className='absolute'> <Loader/> </div>:("")}
     <div className='text-2xl pb-10 text-white' >Register</div>
   <form>
     <div className="user-box">
