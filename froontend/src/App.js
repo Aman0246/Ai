@@ -9,7 +9,7 @@ import Image from "./Pages/Aiimage"
 import { Routes, Route } from "react-router-dom";
 import Paramaker from './Pages/ParaMaker';
 
-axios.defaults.baseURL="http://localhost:7000/"
+axios.defaults.baseURL="https://aibot2-nbpx.onrender.com"
 axios.defaults.withCredentials=true;
 
 
